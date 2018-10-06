@@ -1,0 +1,21 @@
+{
+  "name": "raspilok-project",
+  "version": "1.0.0",
+  "description": "Raspilok opencart",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Art Sled",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.15.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-util": "^3.0.7",
+    "node-bourbon": "^4.2.8",
+    "vinyl-ftp": "^0.6.1"
+  }
+}
