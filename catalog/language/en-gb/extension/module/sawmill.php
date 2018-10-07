@@ -5,6 +5,7 @@ $_['text_material_title']    = 'Cutting material';
  $_['text_edge_recommended'] = 'Recommended edge';
 
  $_['button_cutting_begin']  = 'Begin cutting';
+ $_['button_next']           = 'Next';
 
  $_['column_image']          = 'Image';
  $_['column_name']           = 'Name';
