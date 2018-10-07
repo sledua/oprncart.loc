@@ -1,0 +1,31 @@
+<div id="sawmill">
+    <sawmill></sawmill>
+</div>
+{% for vueTemplate in vueTemplates %}
+    {{ content(vueTemplate,'vue') }}
+{% endfor %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        sawmill.initState({{ json|json_encode(constant('JSON_FORCE_OBJECT') b-or constant('JSON_NUMERIC_CHECK')) }});
+
+        Vue.use(Vuex);
+        Vue.use(new VueOptions({{ options|json_encode }}));
+
+        var store = new Vuex.Store(sawmill);
+
+        var local = {{ local|json_encode }}
+            app = new Vue({
+                store,
+                i18n: new VueI18n({
+                    locale: '{{ language_id }}',
+                    messages: local
+                }),
+                methods: {
+                    o: function (value) {
+                        return value
+                    }
+                }
+            }).$mount('#sawmill');
+    });
+
+    </script>

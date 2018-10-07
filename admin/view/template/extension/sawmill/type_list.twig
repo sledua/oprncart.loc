@@ -1,0 +1,87 @@
+{{header}} {{column_left}}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="form-inline pull-right">
+                <a href="{{add}}" data-toggle="tooltip" title="{{button_add}}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                <button type="button" data-toggle="tooltip" title="{{button_delete}}" class="btn btn-danger" onclick="confirm('{{text_confirm}}') ? $('#form-type').submit() : false;"><i class="fa fa-trash-o"></i></button>
+                <a href="{{cancel}}" data-toggle="tooltip" title="{{button_cancel}}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+            </div>
+            <h1>{{heading_title}} {{version}}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li><a href="{{breadcrumb.href}}">{{breadcrumb.text}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error.warning %}
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{error.warning}}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        {% if success %}
+            <div class="alert alert-success"><i class="fa fa-exclamation-circle"></i> {{success}}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{text_list_type}}</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li><a href="{{href_setting}}" class="htab-item"><i class="fa fa-cog fa-fw"></i> {{text_setting}}</a></li>
+                    <li class="active"><a href="{{href_types}}" class="htab-item"><i class="fa fa-list"></i> {{text_types}}</a></li>
+                </ul>
+                <form action="{{delete}}" method="post" enctype="multipart/form-data" id="form-type">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-center" style="width:30px;"><input class="form-control"  type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                                    <td class="text-center">
+                                        {% if sort == 'name' %}
+                                            <a href="{{sort_name}}" class="{{order|lower}}">{{column_name}}</a>
+                                        {% else %}
+                                            <a href="{{sort_name}}">{{column_name}}</a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">{{column_action}}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if types %}
+                                    {% for type in types %}
+                                        <tr>
+                                            <td class="text-center">
+                                                {% if type.type_id in selected %}
+                                                    <input class="form-control" type="checkbox" name="selected[]" value="{{type.type_id}}" checked="checked"/>
+                                                {% else %}
+                                                    <input class="form-control" type="checkbox" name="selected[]" value="{{type.type_id}}"/>
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center">{{type.name}}</td>
+                                            <td class="text-center">
+                                                <a href="{{type.edit}}" data-toggle="tooltip" title="{{button_edit}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td class="text-center" colspan="3">{{text_no_results}}</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{pagination}}</div>
+                    <div class="col-sm-6 text-right">{{results}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
