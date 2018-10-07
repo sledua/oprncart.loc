@@ -60,29 +60,21 @@ class ControllerExtensionModuleSawmill extends Controller {
                     }
 
                     if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
-						$price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-					} else {
-						$price = false;
-					}
-
-					if ((float)$product_info['special']) {
-						$special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-					} else {
-						$special = false;
-					}
-
-					if ($this->config->get('config_tax')) {
-						$tax = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price'], $this->session->data['currency']);
-					} else {
-						$tax = false;
-					}
+                        $unit_price = $this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'));
+                        
+                        $price = $this->currency->format($unit_price, $this->session->data['currency']);
+                        $total = $this->currency->format($unit_price * $product['quantity'], $this->session->data['currency']);
+                    } else {
+                        $price = false;
+                        $total = false;
+                    }
 
                     $data['json']['products'][] = array(
                         'product_id' => $product_info['product_id'],
                         'name' => html_entity_decode($product_info['name'], ENT_QUOTES, 'UTF-8'),
-                        'tax' => $tax,
-                        'special' => $special,
+                        'quantity' => $product['quantity'],
                         'price' => $price,
+                        'total' => $total,
                         'image' => $image
                     );
                 }
@@ -122,6 +114,7 @@ class ControllerExtensionModuleSawmill extends Controller {
 
                 $data['json']['edge_products'][] = array(
                     'product_id' => $product_info['product_id'],
+                    'model' => $product_info['model'],
                     'name' => html_entity_decode($product_info['name'], ENT_QUOTES, 'UTF-8'),
                     'tax' => $tax,
                     'special' => $special,
@@ -148,10 +141,18 @@ class ControllerExtensionModuleSawmill extends Controller {
 		$local['common']['text_product_framing'] = $this->language->get('text_product_framing');
         $local['common']['text_edge_recommended'] = $this->language->get('text_edge_recommended');
 
+        $local['common']['column_image'] = $this->language->get('column_image');
         $local['common']['column_name'] = $this->language->get('column_name');
+        $local['common']['column_model'] = $this->language->get('column_model');
         $local['common']['column_price'] = $this->language->get('column_price');
+
+        $local['common']['text_step_detail'] = $this->language->get('text_step_detail');
+        $local['common']['text_step_additional'] = $this->language->get('text_step_additional');
+        $local['common']['text_step_calculate'] = $this->language->get('text_step_calculate');
+        $local['common']['text_step_order'] = $this->language->get('text_step_order');
         
 		$local['common']['button_cutting_begin'] = $this->language->get('button_cutting_begin');
+		$local['common']['button_next'] = $this->language->get('button_next');
 
 		return array($this->config->get('config_language_id') => $local);
 	}

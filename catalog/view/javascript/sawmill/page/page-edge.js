@@ -12,6 +12,9 @@ Vue.component('page-edge', {
         },
         handleSelectEdge(product_id) {
             this.$store.dispatch('SET_EDGE_PRODUCT', {productId: this.activeProduct, edgeId: product_id})
+        },
+        handleNextStep() {
+            this.$store.dispatch('SET_STEP', {step: 'detail'})
         }
     }
 });

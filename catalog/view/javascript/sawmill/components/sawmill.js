@@ -2,12 +2,11 @@ Vue.component('sawmill', {
     template: '#template-tag-sawmill',
     data() {
         return {
-            showPopup: false,
-            step: 'edge'
+            showPopup: false
         };
     },
     computed: {
-        ...Vuex.mapGetters(['products'])
+        ...Vuex.mapGetters(['step'])
     },
     methods: {
         handleOpen() {

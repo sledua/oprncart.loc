@@ -711,3 +711,8 @@ system/library/template/Twig/Extension/DTwigManager.php
 system/library/d_shopunity/readme/d_opencart_patch.md
 system/library/d_shopunity/readme/d_shopunity.md
 catalog/view/javascript/sawmill/gulp/package-lock.json
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/d_sawmill.iml

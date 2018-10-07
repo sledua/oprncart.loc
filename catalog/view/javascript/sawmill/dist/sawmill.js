@@ -25,18 +25,33 @@ sawmill.actions.SET_EDGE_PRODUCT = function (_ref2, payload) {
   return commit('SET_EDGE_PRODUCT', payload);
 };
 
+sawmill.actions.SET_STEP = function (_ref3, payload) {
+  var commit = _ref3.commit;
+  return commit('SET_STEP', payload);
+};
+
 Vue.component('sawmill', {
   template: '#template-tag-sawmill',
   data: function data() {
     return {
-      showPopup: false,
-      step: 'edge'
+      showPopup: false
     };
   },
-  computed: _objectSpread({}, Vuex.mapGetters(['products'])),
+  computed: _objectSpread({}, Vuex.mapGetters(['step'])),
   methods: {
     handleOpen: function handleOpen() {
       this.showPopup = !this.showPopup;
+    }
+  }
+});
+Vue.component('tab-step', {
+  template: '#template-tag-tab-step',
+  computed: _objectSpread({}, Vuex.mapGetters(['step'])),
+  methods: {
+    handleStep: function handleStep(step) {
+      this.$store.dispatch('SET_STEP', {
+        step: step
+      });
     }
   }
 });
@@ -103,6 +118,10 @@ sawmill.getters.products = function (state, getters) {
   return result;
 };
 
+sawmill.getters.step = function (state) {
+  return state.step.active;
+};
+
 sawmill.state.cart = {
   activeProduct: null,
   edgeProduct: {}
@@ -116,6 +135,56 @@ sawmill.mutations.SET_EDGE_PRODUCT = function (state, payload) {
   Vue.set(state.cart.edgeProduct, payload.productId, payload.edgeId);
 };
 
+sawmill.state.step = {
+  active: 'edge'
+};
+
+sawmill.mutations.SET_STEP = function (state, payload) {
+  Vue.set(state.step, 'active', payload.step);
+};
+
+Vue.component('page-additional', {
+  template: '#template-tag-page-additional',
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {
+    handleNextStep: function handleNextStep() {
+      this.$store.dispatch('SET_STEP', {
+        step: 'calculate'
+      });
+    }
+  }
+});
+Vue.component('page-calculate', {
+  template: '#template-tag-page-calculate',
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {
+    handleNextStep: function handleNextStep() {
+      this.$store.dispatch('SET_STEP', {
+        step: 'order'
+      });
+    }
+  }
+});
+Vue.component('page-detail', {
+  template: '#template-tag-page-detail',
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {
+    handleNextStep: function handleNextStep() {
+      this.$store.dispatch('SET_STEP', {
+        step: 'additional'
+      });
+    }
+  }
+});
 Vue.component('page-edge', {
   template: '#template-tag-page-edge',
   data: function data() {
@@ -133,6 +202,19 @@ Vue.component('page-edge', {
         productId: this.activeProduct,
         edgeId: product_id
       });
+    },
+    handleNextStep: function handleNextStep() {
+      this.$store.dispatch('SET_STEP', {
+        step: 'detail'
+      });
     }
   }
+});
+Vue.component('page-order', {
+  template: '#template-tag-page-order',
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {}
 });
