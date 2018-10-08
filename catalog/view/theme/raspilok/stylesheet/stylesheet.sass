@@ -161,15 +161,13 @@ ul.col-md-3
 
 .navbar-toggle
 	margin-right: 0
-
-.owl-wrapper-outer
-	border: none
-	box-shadow: none
-	border-radius: 0
-
-.owl-carousel .owl-buttons div i
-	font-size: 35px
-	opacity: .4
+#common-home
+	.swiper-viewport
+		border: none
+		box-shadow: none
+		border-radius: 0
+.swiper-button-prev, .swiper-button-next
+	display: none
 
 .top-menu
 	margin-bottom: 40px
@@ -189,14 +187,14 @@ ul.col-md-3
 		border-bottom: 1px #EDEDED solid
 
 a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover
-	background-color: 
-	border-color: 
+	background-color: $accent-btn
+	border-color: $accent-btn
 	color: #fff
 	text-indent: 10px
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover
-	background-color: darken
-	border-color: darken
+	background-color: lighten($accent-btn, 7%)
+	border-color: lighten($accent-btn, 7%)
 	text-indent: 10px
 
 #content
