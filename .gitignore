@@ -716,3 +716,4 @@ catalog/view/javascript/sawmill/gulp/package-lock.json
 .idea/modules.xml
 .idea/misc.xml
 .idea/d_sawmill.iml
+.idea/jsLibraryMappings.xml

@@ -1,10 +1,10 @@
 function VueOptions(options) {
 
-    this.options = options
+    this.options = options;
 
     this.install = function (Vue) {
         Vue.prototype.$o = function (value) {
-            var keys = value.split('.')
+            var keys = value.split('.');
             var option = this.options;
         
             for (key in keys) {

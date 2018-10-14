@@ -1,31 +1,31 @@
-sawmill.getters.activeProduct = (state) => (state.cart.activeProduct)
+sawmill.getters.activeProduct = (state) => (state.cart.activeProduct);
 sawmill.getters.edgeProducts = (state, getters) => {
-    let result = []
+    let result = [];
     _.each(state.edge_products, (product) => {
-        let tempProduct = {...product, active: false, selected: false}
+        let tempProduct = {...product, active: false, selected: false};
         if(getters.activeProduct && !_.isUndefined(getters.edgeProduct[getters.activeProduct]) && getters.edgeProduct[getters.activeProduct] === product.product_id){
             tempProduct.active = true
         }
         result.push(tempProduct)
-    })
+    });
     return result
     
-}
-sawmill.getters.edgeProduct = (state) => (state.cart.edgeProduct)
+};
+sawmill.getters.edgeProduct = (state) => (state.cart.edgeProduct);
 sawmill.getters.isEdgeSelected = (state, getters) => {
-    let result = true
+    let result = true;
     _.each(getters.products, (product) => {
         if(!product.active) {
             result = false
         }
-    })
+    });
 
     return result
-}
+};
 sawmill.getters.products = (state, getters) => {
-    let result = []
+    let result = [];
     _.each(state.products, (product) => {
-        let tempProduct = {...product, active: false, selected: false}
+        let tempProduct = {...product, active: false, selected: false};
         if(!_.isUndefined(getters.edgeProduct[product.product_id])){
             tempProduct.active = true
         }
@@ -33,6 +33,6 @@ sawmill.getters.products = (state, getters) => {
             tempProduct.selected = true
         }
         result.push(tempProduct)
-    })
+    });
     return result
-}
+};

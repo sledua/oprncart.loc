@@ -25,8 +25,13 @@ sawmill.actions.SET_EDGE_PRODUCT = function (_ref2, payload) {
   return commit('SET_EDGE_PRODUCT', payload);
 };
 
-sawmill.actions.SET_STEP = function (_ref3, payload) {
+sawmill.actions.ADD_DETAIL = function (_ref3, payload) {
   var commit = _ref3.commit;
+  return commit('ADD_DETAIL', payload);
+};
+
+sawmill.actions.SET_STEP = function (_ref4, payload) {
+  var commit = _ref4.commit;
   return commit('SET_STEP', payload);
 };
 
@@ -118,6 +123,24 @@ sawmill.getters.products = function (state, getters) {
   return result;
 };
 
+sawmill.getters.details = function (state, getters) {
+  var result = [];
+
+  _.each(state.detail.entities, function (product) {
+    var productInfo = _.find(getters.products, {
+      product_id: product.material_id
+    });
+
+    var tempProduct = _objectSpread({}, product, {
+      product: productInfo
+    });
+
+    result.push(tempProduct);
+  });
+
+  return result;
+};
+
 sawmill.getters.step = function (state) {
   return state.step.active;
 };
@@ -133,6 +156,17 @@ sawmill.mutations.SET_ACTIVE_PRODUCT = function (state, payload) {
 
 sawmill.mutations.SET_EDGE_PRODUCT = function (state, payload) {
   Vue.set(state.cart.edgeProduct, payload.productId, payload.edgeId);
+};
+
+sawmill.state.detail = {
+  entities: []
+};
+
+sawmill.mutations.ADD_DETAIL = function (state, payload) {
+  var details = JSON.parse(JSON.stringify(state.detail.entities));
+  details.push(payload);
+  console.log(details);
+  Vue.set(state.detail, 'entities', details);
 };
 
 sawmill.state.step = {
@@ -174,14 +208,40 @@ Vue.component('page-calculate', {
 Vue.component('page-detail', {
   template: '#template-tag-page-detail',
   data: function data() {
-    return {};
+    return {
+      detail: {
+        name: '',
+        material_id: '',
+        width: '',
+        height: '',
+        quantity: '',
+        multiplicity_stitching: '',
+        take_into_account_texture: 0
+      },
+      textureOptions: {
+        0: this.$t('common.text_yes'),
+        1: this.$t('common.text_no')
+      }
+    };
   },
-  computed: {},
+  computed: _objectSpread({}, Vuex.mapGetters(['products', 'details'])),
   methods: {
     handleNextStep: function handleNextStep() {
       this.$store.dispatch('SET_STEP', {
         step: 'additional'
       });
+    },
+    onSubmit: function onSubmit() {
+      this.$store.dispatch('ADD_DETAIL', _objectSpread({}, this.detail));
+      this.detail = {
+        name: '',
+        material_id: '',
+        width: '',
+        height: '',
+        quantity: '',
+        multiplicity_stitching: '',
+        take_into_account_texture: 0
+      };
     }
   }
 });
