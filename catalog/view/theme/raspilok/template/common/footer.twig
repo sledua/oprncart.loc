@@ -1,16 +1,43 @@
-<footer>
-  <div class="container">
-    <div class="row">
-      {% if informations %}
-      <div class="col-sm-3">
-        <h5>{{ text_information }}</h5>
-        <ul class="list-unstyled">
+<footer class="main-footer">
+	<div class="footer-cnt">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					{% if logo %}
+						<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+							{% else %}
+          			<h1><a href="{{ home }}">{{ name }}</a></h1>
+          {% endif %}
+				</div>
+				{% if informations %}
+				<div class="col-md-7 hidden-sm hidden-xs">
+        <ul class="nav navbar-nav">
          {% for information in informations %}
           <li><a href="{{ information.href }}">{{ information.title }}</a></li>
           {% endfor %}
+					<li><a href="{{ contact }}">{{ text_contact }}</a></li>
         </ul>
-      </div>
-      {% endif %}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="footer-phone">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="site-phone_wrap">
+						<div class="site-phone">
+							{{ telephone }}{{ contact }}
+						</div>
+						<a href="#callback" class="callback">Заказать звонок</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{# <div class="container">
+    <div class="row">
       <div class="col-sm-3">
         <h5>{{ text_service }}</h5>
         <ul class="list-unstyled">
@@ -39,7 +66,22 @@
       </div>
     </div>
   </div>
+#}
 </footer>
+<div id="callback" class="callback-form product-popup">
+		<form class="ajax-form">
+			<h2>Заказать звонок</h2>
+			<p>Введите номер</p>
+			<input type="hidden" name="project_name" value="raspilok">
+			<input type="hidden" name="admin_email" value="art.sled@yandex.ru">
+			<input type="hidden" name="form_subject" value="Заявка на звонок">
+
+			<input class="form-control" type="text" name="Звать" placeholder="Как вас зовут" required><br>
+			<input class="form-control" type="text" name="Телефон" placeholder="Введите ваш телефон..." required><br>
+			<button class="btn btn-primaru">Заказать</button>
+	</form>
+	<div class="success"> Спасибо за заявку</div>
+</div>
 {% for script in scripts %}
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}

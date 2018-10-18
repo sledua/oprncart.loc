@@ -65,7 +65,7 @@
             {% endif %}
     	</ul>
 		</li>	
-			<li class="header-phone"><a href="{{ contact }}"></a> {{ telephone }}</li>
+			<li class="header-phone"><a href="{{ contact }}">{{ telephone }}</a></li>
 		</ul>
     </div>
   </div>
@@ -73,8 +73,22 @@
 <nav id="top top-menu">
   <div class="container">
     <div class="row">
-			<div class="col-sm-9 ">
-				{{ menu }}
+			<div class="col-sm-9 cart-wrapper">
+				<nav id="menu" class="navbar">
+					<div class="navbar-header"><span id="category" class="visible-xs">{{ text_information }}</span>
+						<button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+					</div>
+    			<div class="collapse navbar-collapse navbar-ex1-collapse">
+						{% if informations %}
+      				<ul class="nav navbar-nav">
+       					{% for information in informations %}
+          			<li><a href="{{ information.href }}">{{ information.title }}</a></li>
+        				{% endfor %}
+								<li><a href="{{ contact }}">{{ text_contact }}</a></li>
+							</ul>
+						{% endif %}
+					</div>
+				</nav>
 			</div>
 			<div class="col-sm-3">
 				{{ cart }}
