@@ -8,6 +8,7 @@ body
 	position: relative
 	line-height: 1.6
 	overflow-x: hidden
+<<<<<<< HEAD
 	font-family: MyriadSetProText, sans-serif
 
 header
@@ -72,11 +73,62 @@ li.header-phone
 #search
 	width: 100%
 	font-family: Arial, sans-serif
+=======
+	font-family: MyriadSetProText, sans-serif	
+
+header
+	background-color: #cac8c8
+	padding: 7px 0
+	.dropdown
+		display: inline-block
+		a.dropdown-toggle
+			color: #2c2e2e
+			font-size: 14px
+			padding: 8px 0 4px 2px
+			display: block
+			&:hover, &:focus, &:active
+				color: lighten(#2c2e2e,15%)
+				transition: color .35s ease
+				text-decoration: none
+ul.col-md-3
+	margin: 0
+.dropdown-menu
+	border: none
+		radius: 0
+	margin-top: 12px
+	left: 0	
+	> li
+		> a
+			padding: 2px 20px
+			&:focus, &:hover
+				background-color: #efaa15 
+				color: #fff
+.header-phone
+	display: inline-block
+	color: #2c2e2e
+	font-size: 18px
+	font-weight: 600
+	float: right
+	padding:
+		left: 8px
+		top: 5px
+	border-left: 1px solid #eee	
+.logo
+	> a
+		>img
+			max-width: 85%
+.form-control
+	&:focus
+		box-shadow: none
+#search
+	width: 100%
+>>>>>>> master
 	.form-control
 		padding: 5px 16px
 		height: 35px
 		border: none
 			radius: 0
+<<<<<<< HEAD
 		background-color: lighten(#cac8c8, 15%)
 		font:
 			style: italic
@@ -88,17 +140,34 @@ li.header-phone
 			background-color: lighten(#cac8c8, 20%)
 			box-shadow: lighten(#cac8c8, 5%) 0 0 0 1px inset
 
+=======
+		background-color: lighten(#cac8c8,10%)
+		font:
+			style: italic
+			size: 17px
+			color: #fff
+		transition: background-color .25s ease, box-shadow .25 ease
+		box-shadow: transporent 0 0 0 1px inset
+		&:focus, &:hover
+			background-color: lighten(#cac8c8,5%)
+			box-shadow: lighten(#cac8c8,5%) 0 0 0 1px inset
+>>>>>>> master
 	.input-group-btn
 		position: absolute
 		right: 26px
 		.btn
+<<<<<<< HEAD
 			padding: 9px 10px
+=======
+			padding: 10px 9px
+>>>>>>> master
 			border: none
 				radius: 0
 			background-color: transparent
 			color: #999
 			font-size: 13px
 
+<<<<<<< HEAD
 .navbar-collapse.in
 	overflow-y: unset
 
@@ -525,5 +594,8 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 
 .product-tabs
 	margin-bottom: 40px
+=======
+
+>>>>>>> master
 
 @import "media"
