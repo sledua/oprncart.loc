@@ -1,0 +1,61 @@
+{{ header }}
+{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="form-inline pull-right">
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default">
+                    <i class="fa fa-reply"></i>
+                </a>
+            </div>
+            <h1>{{ heading_title }} {{ version }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li>
+                        <a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+            </div>
+            <div class="panel-body">
+                <style>
+                    .welcome {
+                        background-image: url('{{ welcome_bottom_image }}');
+                    }
+                </style>
+                <div class="welcome">
+                    <div class="welcome-into">
+                        <div class="welcome-into-logo">
+                                <img src="{{ welcome_into_logo }}"/>
+                        </div>
+                        <div class="welcome-into-heading">{{ text_welcome_title }}</div>
+                        <div class="welcome-into-text">{{ text_welcome_description }}</div>
+                        <div class="welcome-into-start">
+                            <a class="btn btn-primary btn-lg" href="{{ button_setup }}">{{ text_button_setup }}</a>
+                        </div>
+                    </div>
+                    <div class="welcome-features">
+                        <div class="row">
+                            {% for feature in features %}
+                                <div class="col-md-3">
+                                    <div class="welcome-features-icon">
+                                        <img src="{{ feature.icon }}"/>
+                                    </div>
+                                    <div class="welcome-features-text">{{ feature.text }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }}
