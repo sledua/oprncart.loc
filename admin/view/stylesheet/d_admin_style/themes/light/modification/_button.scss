@@ -1,0 +1,38 @@
+@import "../scss/variable";
+
+button {
+  outline-color: rgba(255, 255, 255, 0) !important;
+  outline: 0px solid white !important;
+  -moz-outline: 0px solid white !important;
+  -webkit-outline: 0px solid white !important;
+}
+button + button {
+  margin-left: 3px;
+}
+#cancel-button {
+  margin-left: 3px;
+}
+
+// B-SWITCH
+.bootstrap-switch.bootstrap-switch.bootstrap-switch {
+  border: 2px solid $border_color;
+  .bootstrap-switch-handle-on.bootstrap-switch-success,
+  .bootstrap-switch-handle-off.bootstrap-switch-success {
+    background: $green ;
+    border-color: $green;
+    color: $bs-callout-bgc;
+  }
+  .bootstrap-switch-handle-on.bootstrap-switch-success
+  {
+    color: #fff;
+  }
+}
+// B-TAGS-INPUT
+.bootstrap-tagsinput {
+  width: 100%;
+}
+.panel-default .panel-body [data-toggle="tooltip"]::after,
+.modal-dialog [data-toggle="tooltip"]::after {
+  margin-left: 8px;
+  color: #999999;
+}

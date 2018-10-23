@@ -45,7 +45,7 @@ ul.col-md-3
 				background-color: $accent-btn 
 				color: #FFF
 
-.header-phone
+li.header-phone
 	display: inline-block
 	color: #131918
 	font-size: 18px
@@ -54,6 +54,11 @@ ul.col-md-3
 	padding-top: 4px
 	padding-left: 8px
 	border-left: 1px solid #131918
+	> a
+		text-decoration: none
+		color: #131918
+		&:hover
+			text-decoration: none
 
 .logo
 	> a
@@ -105,6 +110,9 @@ ul.col-md-3
 		margin-bottom: 0
 		font-size: 14px
 		min-height: 40px
+		>li
+			>a
+				color: #333333
 		.navbar-collapse
 			padding: 0
 		&-nav
@@ -116,7 +124,11 @@ ul.col-md-3
 					&:hover, &:focus
 						text-decoration: underline
 						background: none
-
+.navbar-nav>li>a
+	color: #333
+	&:hover
+		background: none
+		text-decoration: underline
 #cart button + .dropdown-menu
 	margin-top: 1px
 	padding: 15px
@@ -153,6 +165,13 @@ ul.col-md-3
 	text-transform: uppercase
 	display: inline-block
 	color: 
+	font-family: MyriadSetProSemiBold, sans-serif
+	padding: 16px 0
+	
+.list-unstyled
+	text-transform: uppercase
+	display: inline-block
+	color: $text-default
 	font-family: MyriadSetProSemiBold, sans-serif
 	padding: 16px 0
 
@@ -282,73 +301,6 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 
 .alert
 	border-radius: 0
-
-#column-left
-	> div
-		> blockquote
-			border: none
-			padding: 0
-			margin-top: 45px
-			color: #777
-			line-height: 1.3
-			ul
-				padding: 0
-				margin: 0
-				list-style-type: none
-				li
-					border: 5px #f7f7f7 solid
-					margin-bottom: 20px
-					padding: 15px 20px 20px 38px
-					background-color: transparent
-					transition: border-color .2s ease, background-color .4s ease, color .25s ease, transform .5s ease
-					font-size: 14px
-					position: relative
-					&:nth-child(1)
-						> span
-							color: #921AD3
-						&:hover
-							background-color: #921AD3
-							border-color: #921AD3
-
-					&:nth-child(2)
-						> span
-							color: #f53737
-						&:hover
-							background-color: #f53737
-							border-color: #f53737
-
-					&:nth-child(3)
-						> span
-							color: #ff9320
-						&:hover
-							background-color: #ff9320
-							border-color: #ff9320
-
-					&:nth-child(4)
-						> span
-							color: #0079ff
-						&:hover
-							background-color: #0079ff
-							border-color: #0079ff
-
-					&:hover
-						border-color: #666
-						background-color: #666
-						color: #fff
-						transform: translateY(-5px)
-						> span
-							color: #fff
-					> span
-						display: block
-						font-size: 18px
-						margin-bottom: 5px
-						font-family: MyriadSetProSemiBold, sans-serif
-						> span
-							position: absolute
-							left: 0
-							font-size: 18px
-							left: 15px
-
 .mfp-content
 	.product-popup
 		display: block
@@ -425,7 +377,7 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 		&:hover
 			opacity: .7
 	.footer-cnt
-		background-color: #333
+		background-color: $footer-bg
 		padding: 7px 0
 		> .container
 			> .row
@@ -451,44 +403,12 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 						color: #b6b6b6
 						background-color: transparent
 						text-decoration: underline
-
-.nav-social
-	padding: 6px 0 0
-	text-align: right
-	ul, li
-		padding: 0
-		margin: 0
-	li
-		display: inline-block
-		a
-			color: #777
-			font-size: 20px
-			padding: 0 5px
-			transition: color .25s ease
+.navbar-footer
+	> li
+		>a
+			color: #ffffff
 			&:hover
-				color: lighten(#8f8f8f, 10%)
-
-.footer-phone
-	background-color: #262626
-	color: #8c8c8c
-	padding: 18px 0 35px
-	.site-phone
-		font-size: 22px
-		color: #c8c8c8
-		margin-top: 8px
-		line-height: 1.3
-	.site-phone_wrap
-		text-align: center
-		font-family: MyriadSetProThin, sans-serif
-	.callback
-		color: #777
-		border-bottom: 1px dashed #777
-		transition: border-bottom .25s ease, color .25s ease
-		font-size: 14px
-		&:hover, &:focus
-			color: lighten(#999, 10%)
-			text-decoration: none
-			border-color: lighten(#999, 10%)
+				color: #333
 
 .btn
 	border-radius: 0
@@ -506,6 +426,8 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 		margin-top: 0
 		margin-bottom: 15px
 		font-family: MyriadSetProThin, sans-serif
+#compare-total
+	display: none
 
 .input-group-sm>.form-control, .input-group-sm>.input-group-addon, .input-group-sm>.input-group-btn>.btn
 	border-radius: 0
@@ -513,7 +435,7 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 	font-family: MyriadSetProSemiBold, sans-serif
 
 .sub-cats
-	font-size: 14px
+	font-size: 18px
 	margin-top: 10px
 	.sub-name
 		font-family: MyriadSetProSemiBold, sans-serif
