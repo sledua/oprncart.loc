@@ -11,7 +11,7 @@
 				</div>
 				{% if informations %}
 				<div class="col-md-7 hidden-sm hidden-xs">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-footer">
          {% for information in informations %}
           <li><a href="{{ information.href }}">{{ information.title }}</a></li>
           {% endfor %}
@@ -22,66 +22,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="footer-phone">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="site-phone_wrap">
-						<div class="site-phone">
-							{{ telephone }}{{ contact }}
-						</div>
-						<a href="#callback" class="callback">Заказать звонок</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-{# <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <h5>{{ text_service }}</h5>
-        <ul class="list-unstyled">
-          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
-          <li><a href="{{ return }}">{{ text_return }}</a></li>
-          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5>{{ text_extra }}</h5>
-        <ul class="list-unstyled">
-          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
-          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
-          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
-          <li><a href="{{ special }}">{{ text_special }}</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5>{{ text_account }}</h5>
-        <ul class="list-unstyled">
-          <li><a href="{{ account }}">{{ text_account }}</a></li>
-          <li><a href="{{ order }}">{{ text_order }}</a></li>
-          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
-          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-#}
 </footer>
-<div id="callback" class="callback-form product-popup">
-		<form class="ajax-form">
-			<h2>Заказать звонок</h2>
-			<p>Введите номер</p>
-			<input type="hidden" name="project_name" value="raspilok">
-			<input type="hidden" name="admin_email" value="art.sled@yandex.ru">
-			<input type="hidden" name="form_subject" value="Заявка на звонок">
-
-			<input class="form-control" type="text" name="Звать" placeholder="Как вас зовут" required><br>
-			<input class="form-control" type="text" name="Телефон" placeholder="Введите ваш телефон..." required><br>
-			<button class="btn btn-primaru">Заказать</button>
-	</form>
-	<div class="success"> Спасибо за заявку</div>
-</div>
 {% for script in scripts %}
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}
