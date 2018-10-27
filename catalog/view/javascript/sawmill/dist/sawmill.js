@@ -30,8 +30,13 @@ sawmill.actions.ADD_DETAIL = function (_ref3, payload) {
   return commit('ADD_DETAIL', payload);
 };
 
-sawmill.actions.SET_STEP = function (_ref4, payload) {
+sawmill.actions.UPDATE_DETAIL = function (_ref4, payload) {
   var commit = _ref4.commit;
+  return commit('UPDATE_DETAIL', payload);
+};
+
+sawmill.actions.SET_STEP = function (_ref5, payload) {
+  var commit = _ref5.commit;
   return commit('SET_STEP', payload);
 };
 
@@ -105,16 +110,11 @@ sawmill.getters.products = function (state, getters) {
 
   _.each(state.products, function (product) {
     var tempProduct = _objectSpread({}, product, {
-      active: false,
-      selected: false
+      active: false
     });
 
-    if (!_.isUndefined(getters.edgeProduct[product.product_id])) {
-      tempProduct.active = true;
-    }
-
     if (getters.activeProduct === product.product_id) {
-      tempProduct.selected = true;
+      tempProduct.active = true;
     }
 
     result.push(tempProduct);
@@ -127,15 +127,17 @@ sawmill.getters.details = function (state, getters) {
   var result = [];
 
   _.each(state.detail.entities, function (product) {
-    var productInfo = _.find(getters.products, {
-      product_id: product.material_id
-    });
+    if (getters.activeProduct === product.material_id) {
+      var productInfo = _.find(getters.products, {
+        product_id: product.material_id
+      });
 
-    var tempProduct = _objectSpread({}, product, {
-      product: productInfo
-    });
+      var tempProduct = _objectSpread({}, product, {
+        product: productInfo
+      });
 
-    result.push(tempProduct);
+      result.push(tempProduct);
+    }
   });
 
   return result;
@@ -165,12 +167,15 @@ sawmill.state.detail = {
 sawmill.mutations.ADD_DETAIL = function (state, payload) {
   var details = JSON.parse(JSON.stringify(state.detail.entities));
   details.push(payload);
-  console.log(details);
   Vue.set(state.detail, 'entities', details);
 };
 
+sawmill.mutations.UPDATE_DETAIL = function (state, payload) {
+  Vue.set(state.detail.entities, payload.key, payload.detail);
+};
+
 sawmill.state.step = {
-  active: 'edge'
+  active: 'detail'
 };
 
 sawmill.mutations.SET_STEP = function (state, payload) {
@@ -210,37 +215,73 @@ Vue.component('page-detail', {
   data: function data() {
     return {
       detail: {
-        name: '',
         material_id: '',
         width: '',
         height: '',
-        quantity: '',
-        multiplicity_stitching: '',
-        take_into_account_texture: 0
-      },
-      textureOptions: {
-        0: this.$t('common.text_yes'),
-        1: this.$t('common.text_no')
+        quantity: ''
       }
     };
   },
-  computed: _objectSpread({}, Vuex.mapGetters(['products', 'details'])),
+  computed: _objectSpread({}, Vuex.mapGetters(['products', 'details', 'activeProduct'])),
   methods: {
+    handleSelectProduct: function handleSelectProduct(product_id) {
+      this.$store.dispatch('SET_ACTIVE_PRODUCT', {
+        productId: product_id
+      });
+    },
     handleNextStep: function handleNextStep() {
       this.$store.dispatch('SET_STEP', {
         step: 'additional'
       });
     },
+    handleEditWidth: function handleEditWidth(e, key) {
+      var detail = this.details[key];
+      this.$store.dispatch('UPDATE_DETAIL', {
+        key: key,
+        detail: _objectSpread({}, detail, {
+          width: e.target.value
+        })
+      });
+    },
+    handleEditHeight: function handleEditHeight(e, key) {
+      var detail = this.details[key];
+      this.$store.dispatch('UPDATE_DETAIL', {
+        key: key,
+        detail: _objectSpread({}, detail, {
+          height: e.target.value
+        })
+      });
+    },
+    handleEditQuantity: function handleEditQuantity(e, key) {
+      var detail = this.details[key];
+      this.$store.dispatch('UPDATE_DETAIL', {
+        key: key,
+        detail: _objectSpread({}, detail, {
+          quantity: e.target.value
+        })
+      });
+    },
+    addDetail: function addDetail() {
+      if (this.activeProduct) {
+        this.$store.dispatch('ADD_DETAIL', _objectSpread({}, {
+          material_id: '',
+          width: '',
+          height: '',
+          quantity: ''
+        }, {
+          material_id: this.activeProduct
+        }));
+      }
+    },
     onSubmit: function onSubmit() {
-      this.$store.dispatch('ADD_DETAIL', _objectSpread({}, this.detail));
+      this.$store.dispatch('ADD_DETAIL', _objectSpread({}, this.detail, {
+        material_id: this.activeProduct
+      }));
       this.detail = {
-        name: '',
         material_id: '',
         width: '',
         height: '',
-        quantity: '',
-        multiplicity_stitching: '',
-        take_into_account_texture: 0
+        quantity: ''
       };
     }
   }

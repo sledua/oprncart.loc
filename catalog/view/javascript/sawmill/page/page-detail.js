@@ -3,37 +3,55 @@ Vue.component('page-detail', {
     data() {
         return {
             detail: {
-                name: '',
                 material_id: '',
                 width: '',
                 height: '',
-                quantity: '',
-                multiplicity_stitching: '',
-                take_into_account_texture: 0
+                quantity: ''
             },
-            textureOptions: {
-                0: this.$t('common.text_yes'),
-                1: this.$t('common.text_no')
-            }
         };
     },
     computed: {
-        ...Vuex.mapGetters(['products', 'details'])
+        ...Vuex.mapGetters(['products', 'details', 'activeProduct',])
     },
     methods: {
+        handleSelectProduct(product_id) {
+            console.log(product_id)
+            this.$store.dispatch('SET_ACTIVE_PRODUCT', {productId: product_id})
+        },
         handleNextStep() {
             this.$store.dispatch('SET_STEP', {step: 'additional'})
         },
+        handleEditWidth(e, key) {
+            const detail = this.details[key];
+            this.$store.dispatch('UPDATE_DETAIL', {key: key, detail: {...detail, width: e.target.value}})
+        },
+        handleEditHeight(e, key) {
+            const detail = this.details[key];
+            this.$store.dispatch('UPDATE_DETAIL', {key: key, detail: {...detail, height: e.target.value}})
+        },
+        handleEditQuantity(e, key) {
+            const detail = this.details[key];
+            this.$store.dispatch('UPDATE_DETAIL', {key: key, detail: {...detail, quantity: e.target.value}})
+        },
+        addDetail() {
+            if (this.activeProduct) {
+                this.$store.dispatch('ADD_DETAIL', {
+                    ...{
+                        material_id: '',
+                        width: '',
+                        height: '',
+                        quantity: ''
+                    }, material_id: this.activeProduct
+                });
+            }
+        },
         onSubmit() {
-            this.$store.dispatch('ADD_DETAIL', {...this.detail});
+            this.$store.dispatch('ADD_DETAIL', {...this.detail, material_id: this.activeProduct});
             this.detail = {
-                name: '',
                 material_id: '',
                 width: '',
                 height: '',
-                quantity: '',
-                multiplicity_stitching: '',
-                take_into_account_texture: 0
+                quantity: ''
             }
         }
     }

@@ -148,6 +148,9 @@ class ControllerExtensionModuleSawmill extends Controller {
         $local['common']['column_size'] = $this->language->get('column_size');
         $local['common']['column_quantity'] = $this->language->get('column_quantity');
         $local['common']['column_take_texture'] = $this->language->get('column_take_texture');
+        $local['common']['column_width'] = $this->language->get('column_width');
+        $local['common']['column_height'] = $this->language->get('column_height');
+        $local['common']['column_square'] = $this->language->get('column_square');
 
         $local['common']['text_step_detail'] = $this->language->get('text_step_detail');
         $local['common']['text_step_additional'] = $this->language->get('text_step_additional');

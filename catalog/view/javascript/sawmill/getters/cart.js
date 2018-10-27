@@ -25,12 +25,9 @@ sawmill.getters.isEdgeSelected = (state, getters) => {
 sawmill.getters.products = (state, getters) => {
     let result = [];
     _.each(state.products, (product) => {
-        let tempProduct = {...product, active: false, selected: false};
-        if(!_.isUndefined(getters.edgeProduct[product.product_id])){
-            tempProduct.active = true
-        }
+        let tempProduct = {...product, active: false};
         if(getters.activeProduct === product.product_id){
-            tempProduct.selected = true
+            tempProduct.active = true
         }
         result.push(tempProduct)
     });

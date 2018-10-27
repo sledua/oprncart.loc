@@ -1,5 +1,5 @@
 sawmill.state.step = {
-    active: 'edge'
+    active: 'detail'
 };
 sawmill.mutations.SET_STEP = (state, payload) => {
     Vue.set(state.step, 'active', payload.step)

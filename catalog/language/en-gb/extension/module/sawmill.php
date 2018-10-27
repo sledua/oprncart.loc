@@ -14,6 +14,9 @@ $_['text_material_title']    = 'Cutting material';
  $_['column_size']           = 'Size';
  $_['column_quantity']       = 'Quantity';
  $_['column_take_texture']   = 'Take into account the texture';
+ $_['column_width']          = 'Width';
+ $_['column_height']         = 'Height';
+ $_['column_square']         = 'Square';
 
  $_['text_step_detail']      = 'Detail';
  $_['text_step_additional']  = 'Additional processing';
