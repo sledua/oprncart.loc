@@ -1,12 +1,12 @@
-<template id="template-tag-page-order">
-<div class="step-order">
+<template id="template-tag-page-services">
+<div class="step-services">
     <tab-step></tab-step>
     <div class="row">
         <div class="col-md-6">
-            order
+            services
         </div>
         <div class="col-md-6">
-            order
+            services
         </div>
     </div>
 </div>

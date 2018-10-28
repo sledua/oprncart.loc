@@ -62,8 +62,8 @@ class ControllerExtensionModuleSawmill extends Controller {
                     if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
                         $unit_price = $this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'));
                         
-                        $price = $this->currency->format($unit_price, $this->session->data['currency']);
-                        $total = $this->currency->format($unit_price * $product['quantity'], $this->session->data['currency']);
+                        $price = $this->currency->format($unit_price, $this->session->data['currency'], '', false);
+                        $total = $this->currency->format($unit_price * $product['quantity'], $this->session->data['currency'], '', false);
                     } else {
                         $price = false;
                         $total = false;
@@ -140,6 +140,9 @@ class ControllerExtensionModuleSawmill extends Controller {
 		$local['common']['text_material_title'] = $this->language->get('text_material_title');
 		$local['common']['text_product_framing'] = $this->language->get('text_product_framing');
         $local['common']['text_edge_recommended'] = $this->language->get('text_edge_recommended');
+        $local['common']['text_information'] = $this->language->get('text_information');
+        $local['common']['text_sum_detail_square'] = $this->language->get('text_sum_detail_square');
+        $local['common']['text_sum_detail_quantity'] = $this->language->get('text_sum_detail_quantity');
 
         $local['common']['column_image'] = $this->language->get('column_image');
         $local['common']['column_name'] = $this->language->get('column_name');
@@ -151,11 +154,17 @@ class ControllerExtensionModuleSawmill extends Controller {
         $local['common']['column_width'] = $this->language->get('column_width');
         $local['common']['column_height'] = $this->language->get('column_height');
         $local['common']['column_square'] = $this->language->get('column_square');
+        $local['common']['column_details'] = $this->language->get('column_details');
+        $local['common']['column_details_square'] = $this->language->get('column_details_square');
+        $local['common']['column_total'] = $this->language->get('column_total');
 
-        $local['common']['text_step_detail'] = $this->language->get('text_step_detail');
-        $local['common']['text_step_additional'] = $this->language->get('text_step_additional');
-        $local['common']['text_step_calculate'] = $this->language->get('text_step_calculate');
-        $local['common']['text_step_order'] = $this->language->get('text_step_order');
+        $local['common']['text_step_specification'] = $this->language->get('text_step_specification');
+        $local['common']['text_step_cutting'] = $this->language->get('text_step_cutting');
+        $local['common']['text_step_services'] = $this->language->get('text_step_services');
+
+        $local['common']['text_unit_quantity'] = $this->language->get('text_unit_quantity');
+        $local['common']['text_unit_square'] = $this->language->get('text_unit_square');
+        $local['common']['text_unit_square_mm'] = $this->language->get('text_unit_square_mm');
 
         $local['common']['text_yes'] = $this->language->get('text_yes');
         $local['common']['text_no'] = $this->language->get('text_no');

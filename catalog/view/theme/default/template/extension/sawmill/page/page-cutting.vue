@@ -1,12 +1,12 @@
-<template id="template-tag-page-additional">
-<div class="step-additional">
+<template id="template-tag-page-cutting">
+<div class="cutting">
     <tab-step></tab-step>
     <div class="row">
         <div class="col-md-6">
-            additional
+            cutting
         </div>
         <div class="col-md-6">
-            additional
+            cutting
         </div>
     </div>
     <div class="row">

@@ -110,11 +110,20 @@ sawmill.getters.products = function (state, getters) {
 
   _.each(state.products, function (product) {
     var tempProduct = _objectSpread({}, product, {
-      active: false
+      active: false,
+      detailsSquare: 0,
+      detailsQuantity: 0
     });
 
     if (getters.activeProduct === product.product_id) {
       tempProduct.active = true;
+    }
+
+    for (var detailID in getters.allDetails) {
+      if (getters.allDetails[detailID].material_id === product.product_id) {
+        tempProduct.detailsQuantity += getters.allDetails[detailID].quantity;
+        tempProduct.detailsSquare += getters.allDetails[detailID].width * getters.allDetails[detailID].height;
+      }
     }
 
     result.push(tempProduct);
@@ -124,7 +133,7 @@ sawmill.getters.products = function (state, getters) {
 };
 
 sawmill.getters.details = function (state, getters) {
-  var result = [];
+  var result = {};
 
   _.each(state.detail.entities, function (product) {
     if (getters.activeProduct === product.material_id) {
@@ -136,11 +145,15 @@ sawmill.getters.details = function (state, getters) {
         product: productInfo
       });
 
-      result.push(tempProduct);
+      result[product.id] = tempProduct;
     }
   });
 
   return result;
+};
+
+sawmill.getters.allDetails = function (state) {
+  return state.detail.entities;
 };
 
 sawmill.getters.step = function (state) {
@@ -161,29 +174,33 @@ sawmill.mutations.SET_EDGE_PRODUCT = function (state, payload) {
 };
 
 sawmill.state.detail = {
-  entities: []
+  entities: {}
 };
 
 sawmill.mutations.ADD_DETAIL = function (state, payload) {
-  var details = JSON.parse(JSON.stringify(state.detail.entities));
-  details.push(payload);
-  Vue.set(state.detail, 'entities', details);
+  var detailID = Math.random().toString(36).substr(2, 9);
+
+  var detail = _objectSpread({}, payload, {
+    id: detailID
+  });
+
+  Vue.set(state.detail.entities, detailID, detail);
 };
 
 sawmill.mutations.UPDATE_DETAIL = function (state, payload) {
-  Vue.set(state.detail.entities, payload.key, payload.detail);
+  Vue.set(state.detail.entities, payload.detailID, payload.detail);
 };
 
 sawmill.state.step = {
-  active: 'detail'
+  active: 'specification'
 };
 
 sawmill.mutations.SET_STEP = function (state, payload) {
   Vue.set(state.step, 'active', payload.step);
 };
 
-Vue.component('page-additional', {
-  template: '#template-tag-page-additional',
+Vue.component('page-cutting', {
+  template: '#template-tag-page-cutting',
   data: function data() {
     return {};
   },
@@ -191,27 +208,21 @@ Vue.component('page-additional', {
   methods: {
     handleNextStep: function handleNextStep() {
       this.$store.dispatch('SET_STEP', {
-        step: 'calculate'
+        step: 'services'
       });
     }
   }
 });
-Vue.component('page-calculate', {
-  template: '#template-tag-page-calculate',
+Vue.component('page-services', {
+  template: '#template-tag-page-services',
   data: function data() {
     return {};
   },
   computed: {},
-  methods: {
-    handleNextStep: function handleNextStep() {
-      this.$store.dispatch('SET_STEP', {
-        step: 'order'
-      });
-    }
-  }
+  methods: {}
 });
-Vue.component('page-detail', {
-  template: '#template-tag-page-detail',
+Vue.component('page-specification', {
+  template: '#template-tag-page-specification',
   data: function data() {
     return {
       detail: {
@@ -222,7 +233,26 @@ Vue.component('page-detail', {
       }
     };
   },
-  computed: _objectSpread({}, Vuex.mapGetters(['products', 'details', 'activeProduct'])),
+  computed: _objectSpread({
+    square: function square() {
+      var square = 0;
+
+      for (var detailID in this.details) {
+        square += this.details[detailID].width * this.details[detailID].height;
+      }
+
+      return square;
+    },
+    quantity: function quantity() {
+      var quantity = 0;
+
+      for (var detailID in this.details) {
+        quantity += this.details[detailID].quantity;
+      }
+
+      return quantity;
+    }
+  }, Vuex.mapGetters(['products', 'details', 'activeProduct'])),
   methods: {
     handleSelectProduct: function handleSelectProduct(product_id) {
       this.$store.dispatch('SET_ACTIVE_PRODUCT', {
@@ -231,33 +261,33 @@ Vue.component('page-detail', {
     },
     handleNextStep: function handleNextStep() {
       this.$store.dispatch('SET_STEP', {
-        step: 'additional'
+        step: 'cutting'
       });
     },
-    handleEditWidth: function handleEditWidth(e, key) {
-      var detail = this.details[key];
+    handleEditWidth: function handleEditWidth(e, detailID) {
+      var detail = this.details[detailID];
       this.$store.dispatch('UPDATE_DETAIL', {
-        key: key,
+        detailID: detailID,
         detail: _objectSpread({}, detail, {
-          width: e.target.value
+          width: Number(e.target.value)
         })
       });
     },
-    handleEditHeight: function handleEditHeight(e, key) {
-      var detail = this.details[key];
+    handleEditHeight: function handleEditHeight(e, detailID) {
+      var detail = this.details[detailID];
       this.$store.dispatch('UPDATE_DETAIL', {
-        key: key,
+        detailID: detailID,
         detail: _objectSpread({}, detail, {
-          height: e.target.value
+          height: Number(e.target.value)
         })
       });
     },
-    handleEditQuantity: function handleEditQuantity(e, key) {
-      var detail = this.details[key];
+    handleEditQuantity: function handleEditQuantity(e, detailID) {
+      var detail = this.details[detailID];
       this.$store.dispatch('UPDATE_DETAIL', {
-        key: key,
+        detailID: detailID,
         detail: _objectSpread({}, detail, {
-          quantity: e.target.value
+          quantity: Number(e.target.value)
         })
       });
     },
@@ -285,37 +315,4 @@ Vue.component('page-detail', {
       };
     }
   }
-});
-Vue.component('page-edge', {
-  template: '#template-tag-page-edge',
-  data: function data() {
-    return {};
-  },
-  computed: _objectSpread({}, Vuex.mapGetters(['products', 'edgeProducts', 'activeProduct', 'isEdgeSelected'])),
-  methods: {
-    handleSelectProduct: function handleSelectProduct(product_id) {
-      this.$store.dispatch('SET_ACTIVE_PRODUCT', {
-        productId: product_id
-      });
-    },
-    handleSelectEdge: function handleSelectEdge(product_id) {
-      this.$store.dispatch('SET_EDGE_PRODUCT', {
-        productId: this.activeProduct,
-        edgeId: product_id
-      });
-    },
-    handleNextStep: function handleNextStep() {
-      this.$store.dispatch('SET_STEP', {
-        step: 'detail'
-      });
-    }
-  }
-});
-Vue.component('page-order', {
-  template: '#template-tag-page-order',
-  data: function data() {
-    return {};
-  },
-  computed: {},
-  methods: {}
 });
