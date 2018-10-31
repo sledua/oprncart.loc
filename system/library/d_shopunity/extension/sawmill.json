@@ -1,0 +1,86 @@
+{
+    "codename": "sawmill",
+    "version": "3.0.0",
+    "name": "Sawnill",
+    "description": "Sawnill",
+    "index": "extension/module/sawmill",
+    "author": {
+        "name": "Shopunity",
+        "email": "info@shopunity.com",
+        "url": "https://shopunity.net/"
+    },
+    "opencart_version": [
+        "2.0.0.0",
+        "2.0.1.0",
+        "2.0.1.1",
+        "2.0.2.0",
+        "2.0.3.1",
+        "2.1.0.1",
+        "2.1.0.2",
+        "2.2.0.0",
+        "2.3.0.0",
+        "2.3.0.1",
+        "2.3.0.2",
+        "3.0.0.0",
+        "3.0.1.1",
+        "3.0.1.2",
+        "3.0.2.0"
+    ],
+    "type": "module",
+    "license": {
+        "type": "free",
+        "url": "https://shopunity.net/licenses/free"
+    },
+    "install": {
+        "url": "extension/extension/module/install&extension=sawmill"
+    },
+    "uninstall": {
+        "url": "extension/extension/module/uninstall&extension=sawmill"
+    },
+    "support": {
+        "email": "support@shopunity.com",
+        "url": "https://shopunity.net/"
+    },
+    "required": {
+        "d_opencart_patch": ">= 1.0.0",
+        "d_event_manager": ">= 1.3.3",
+        "d_twig_manager": ">= 1.4.1",
+        "d_bootstrap_switch": ">= 3.3.5",
+        "d_admin_style": ">= 1.0.0",
+        "d_simple_html_dom": ">= 1.0.4",
+        "d_vue": ">=1.0.0",
+        "d_vuex": ">=1.0.0",
+        "d_vue_i18n": ">=1.0.0",
+        "d_underscore": ">=1.0.0"
+    },
+    "files": [
+        "system/library/d_shopunity/extension/sawmill.json",
+
+        "admin/controller/extension/module/sawmill.php",
+        "admin/model/extension/module/sawmill.php",
+        "admin/language/en-gb/extension/module/sawmill.php",
+        "admin/view/template/extension/module/sawmill.twig",
+        
+        "catalog/controller/extension/module/sawmill.php",
+        "catalog/model/extension/module/sawmill.php",
+        "catalog/language/en-gb/extension/module/sawmill.php",
+        "catalog/view/theme/default/template/extension/module/sawmill.twig",
+
+        "system/config/sawmill.php"
+    ],
+    "dirs": [
+        "admin/controller/extension/sawmill",
+        "admin/langauge/en-gb/extension/sawmill",
+        "admin/view/image/sawmill",
+        "admin/view/template/extension/sawmill",
+        "catalog/view/javascript/sawmill",
+        "catalog/view/theme/default/stylesheet/sawmill",
+        "catalog/view/theme/default/template/extension/sawmill"
+    ],
+    "changelog": [
+        {
+            "varsion":"1.0.0",
+            "change": "First version"
+        }
+    ]
+}

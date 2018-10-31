@@ -1,0 +1,8 @@
+@import "../scss/variable";
+.nav.nav-tabs>li>a:focus,.nav.nav-tabs>li>a:hover
+{
+  background-color: $some_gray;
+}
+.nav-tabs{
+  border-bottom:2px solid $some_gray;
+}

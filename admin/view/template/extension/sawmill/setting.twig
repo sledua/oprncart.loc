@@ -1,0 +1,186 @@
+{# location: admin/view #}
+
+{{ header }} {{ column_left }}
+
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="form-inline pull-right">
+
+                <button id="save_and_stay" data-toggle="tooltip" title="{{button_save_and_stay}}" class="btn btn-success"><i
+                        class="fa fa-save"></i></button>
+
+                <button type="submit" form="form" data-toggle="tooltip" title="{{button_save}}" class="btn btn-primary"><i
+                        class="fa fa-save"></i></button>
+
+                <a href="{{cancel}}" data-toggle="tooltip" title="{{button_cancel}}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+            </div>
+            <h1>{{heading_title}} {{version}}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error.warning %}
+        <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error.warning }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success"><i class="fa fa-exclamation-circle"></i> {{ success }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{text_edit}}</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="{{href_setting}}" class="htab-item"><i class="fa fa-cog fa-fw"></i>
+                            {{text_setting}}</a></li>
+                    <li><a href="{{href_types}}" class="htab-item"><i class="fa fa-list"></i> {{text_types}}</a></li>
+                </ul>
+                {% if setup %}
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_setting">
+                        <div class="tab-body">
+
+                            <form action="{{action}}" method="post" enctype="multipart/form-data" id="form" class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input_status">{{entry_status}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="module_{{codename}}_status" value="0" />
+                                        <input type="checkbox" name="module_{{codename}}_status" class="switcher"
+                                            data-label-text="{{text_enabled}}" id="input_status"
+                                            {{attribute(_context, codename~'_status') ? 'checked="checked"' }} value="1" />
+                                    </div>
+                                </div><!-- //status -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-material-type">{{
+                                        entry_material_type }}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="material_type" value="{{ material_type }}" placeholder="{{ entry_material_type }}"
+                                            id="input-material-type" class="form-control" />
+                                        <input type="hidden" name="module_{{codename}}_setting[material_type_id]" value="{{ setting.material_type_id }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-edge-type">{{
+                                        entry_edge_type }}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="edge_type" value="{{ edge_type }}" placeholder="{{ entry_edge_type }}"
+                                            id="input-edge-type" class="form-control" />
+                                        <input type="hidden" name="module_{{codename}}_setting[edge_type_id]" value="{{ setting.edge_type_id }}" />
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                {{text_welcome}}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    <!--
+    $(function () {
+        $('input[id=\'material_type\']').autocomplete({
+            'source': function (request, response) {
+                $.ajax({
+                    url: '{{autocomplete_link}}&filter_name=' + encodeURIComponent(request),
+                    dataType: 'json',
+                    success: function (json) {
+                        json.unshift({
+                            sawmill_type_id: 0,
+                            name: '{{ text_none }}'
+                        });
+
+                        response($.map(json, function (item) {
+                            return {
+                                label: item['name'],
+                                value: item['type_id']
+                            }
+                        }));
+                    }
+                });
+            },
+            'select': function (item) {
+                $('input[id=\'material_type\']').val(item['label']);
+                $('input[name=\'module_{{codename}}_setting\[material_type_id\]\']').val(item['value']);
+            }
+        });
+        $('input[id=\'edge_type\']').autocomplete({
+            'source': function (request, response) {
+                $.ajax({
+                    url: '{{autocomplete_link}}&filter_name=' + encodeURIComponent(request),
+                    dataType: 'json',
+                    success: function (json) {
+                        json.unshift({
+                            sawmill_type_id: 0,
+                            name: '{{ text_none }}'
+                        });
+
+                        response($.map(json, function (item) {
+                            return {
+                                label: item['name'],
+                                value: item['type_id']
+                            }
+                        }));
+                    }
+                });
+            },
+            'select': function (item) {
+                $('input[id=\'edge_type\']').val(item['label']);
+                $('input[name=\'module_{{codename}}_setting\[edge_type_id\]\']').val(item['value']);
+            }
+        });
+        //checkbox
+        $(".switcher[type='checkbox']").bootstrapSwitch({
+            'onColor': 'success',
+            'onText': '{{text_yes}}',
+            'offText': '{{text_no}}',
+        });
+
+        $(document).on('click', '#save_and_stay', function () {
+            $.ajax({
+                type: 'post',
+                url: $('#form').attr('action') + '&save',
+                data: $('#form').serialize(),
+                beforeSend: function () {
+                    $('#form').fadeTo('slow', 0.5);
+                },
+                complete: function () {
+                    $('#form').fadeTo('slow', 1);
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        });
+
+        $(document).on('click', '.setup', function () {
+
+            window.location.href = '{{setup_link}}';
+
+        })
+    });
+    //-->
+</script>
+{{footer}}

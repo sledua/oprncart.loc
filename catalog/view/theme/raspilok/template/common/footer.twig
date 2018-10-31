@@ -1,0 +1,29 @@
+<footer class="main-footer">
+	<div class="footer-cnt">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					{% if logo %}
+						<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+							{% else %}
+          			<h1><a href="{{ home }}">{{ name }}</a></h1>
+          {% endif %}
+				</div>
+				{% if informations %}
+				<div class="col-md-7 hidden-sm hidden-xs">
+        <ul class="nav navbar-nav navbar-footer">
+         {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+					<li><a href="{{ contact }}">{{ text_contact }}</a></li>
+        </ul>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</footer>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+</body></html>

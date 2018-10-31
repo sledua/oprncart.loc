@@ -1,0 +1,178 @@
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 100;
+  src: local("Montserrat Thin Italic"),local(Montserrat-ThinItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUOjIg1_i6t8kCHKm459WxZqh7k29c.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUOjIg1_i6t8kCHKm459WxZqh7k29M.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUOjIg1_i6t8kCHKm459WxZqh7k29U.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 200;
+  src: local("Montserrat ExtraLight Italic"),local(Montserrat-ExtraLightItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZBg_z_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZBg_z_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZBg_z_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 300;
+  src: local("Montserrat Light Italic"),local(Montserrat-LightItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZYgzz_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZYgzz_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZYgzz_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 400;
+  src: local("Montserrat Italic"),local(Montserrat-Italic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm459WxRyS7i.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm459WxRyS7g.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 500;
+  src: local("Montserrat Medium Italic"),local(Montserrat-MediumItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZOg3z_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZOg3z_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZOg3z_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 600;
+  src: local("Montserrat SemiBold Italic"),local(Montserrat-SemiBoldItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZFgrz_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZFgrz_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZFgrz_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 700;
+  src: local("Montserrat Bold Italic"),local(Montserrat-BoldItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZcgvz_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZcgvz_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZcgvz_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 800;
+  src: local("Montserrat ExtraBold Italic"),local(Montserrat-ExtraBoldItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZbgjz_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZbgjz_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZbgjz_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 900;
+  src: local("Montserrat Black Italic"),local(Montserrat-BlackItalic),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZSgnz_PZ0.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZSgnz_PZw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUPjIg1_i6t8kCHKm459WxZSgnz_PZ2.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 100;
+  src: local("Montserrat Thin"),local(Montserrat-Thin),url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm45_QpRyS7i.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm45_QpRyS7m.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm45_QpRyS7g.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 200;
+  src: local("Montserrat ExtraLight"),local(Montserrat-ExtraLight),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_aZA3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_aZA3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_aZA3gnD-A.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 300;
+  src: local("Montserrat Light"),local(Montserrat-Light),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_cJD3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_cJD3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_cJD3gnD-A.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Montserrat Regular"),local(Montserrat-Regular),url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459Wlhzw.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459WlhzQ.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat Medium"),local(Montserrat-Medium),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_ZpC3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_ZpC3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_ZpC3gnD-A.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  src: local("Montserrat SemiBold"),local(Montserrat-SemiBold),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_bZF3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_bZF3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_bZF3gnD-A.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat Bold"),local(Montserrat-Bold),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_dJE3gnD-A.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 800;
+  src: local("Montserrat ExtraBold"),local(Montserrat-ExtraBold),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gnD-A.woff) format("woff");
+}
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 900;
+  src: local("Montserrat Black"),local(Montserrat-Black),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gnD-g.eot?#) format("eot"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gnD_g.woff2) format("woff2"),url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_epG3gnD-A.woff) format("woff");
+}
+  .sawmill {
+  position: relative;
+}
+  .sawmill .sawmill-popup-backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 98;
+    background-color: #000;
+    opacity: 0.5;
+  }
+  .sawmill .nav-tabs {
+    margin-bottom: 1rem;
+  }
+  .sawmill .sawmill-popup {
+    position: fixed;
+    left: 20%;
+    top: 10%;
+    width: 60%;
+    height: 80%;
+    background: #fff;
+    -webkit-border-radius: 0.6rem;
+            border-radius: 0.6rem;
+    z-index: 99;
+    padding: 2rem;
+    font-family: "Montserrat", sans-serif;
+    overflow-y: scroll;
+  }
+  .sawmill .sawmill-popup .step-edge .sawmill-material-title {
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 0 0 2rem;
+      }
+  .sawmill .sawmill-popup .step-edge .sawmill-material-wrapper > .sawmill-material-thumb {
+          border: 0.2rem solid red;
+          padding: 1rem 2rem;
+          margin-bottom: 1rem;
+          cursor: pointer
+
+        }
+  .sawmill .sawmill-popup .step-edge .sawmill-material-wrapper > .sawmill-material-thumb.active {
+  border-color: #000;
+}
+  .sawmill .sawmill-popup .step-edge .sawmill-material-wrapper > .sawmill-material-thumb.active > .product-name {
+              color: #000;
+}
+  .sawmill .sawmill-popup .step-edge .sawmill-material-wrapper > .sawmill-material-thumb.selected {
+  border-color: green;
+}
+  .sawmill .sawmill-popup .step-edge .sawmill-material-wrapper > .sawmill-material-thumb > .product-name {
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: red;
+}
+  .sawmill .sawmill-popup .step-edge .sawmill-edge-title {
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 0 0 2rem;
+      }
+  .sawmill .sawmill-popup .step-edge .sawmill-edge-subTitle {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 0 0 1rem;
+      }
+  .sawmill .sawmill-popup .step-edge .sawmill-table-edge tr:hover {
+          cursor: pointer;
+        }
+/*# sourceMappingURL=sawmill.css.map */
