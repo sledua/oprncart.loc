@@ -8,8 +8,8 @@ namespace d_shopunity;
 
 class GitHub{
  
-  private $user = ''; // Github username
-  private $repo = '';  // repository name
+  private $user = 'Art.Sled'; // Github username
+  private $repo = 'oprncart.loc';  // repository name
   private $deploy = './'; // directory deploy repository
   private $branch = 'master';
   private $download_name = 'download.zip'; // name of downloaded zip file
@@ -18,7 +18,7 @@ class GitHub{
   private $access_token = ''; // deploy or update
  
   // files to ignore in directory
-  private $ignore_files = array('README.md', '.gitignore', '.', '..');
+  private $ignore_files = array('README.md', '.gitignore', '.', '..', 'LICENSE');
  
   // default array of files to be committed
   private $files = array('modified' => array(), 'added' => array(), 'removed' => array());
