@@ -8,14 +8,14 @@ namespace d_shopunity;
 
 class GitHub{
  
-  private $user = ''; // Github username
-  private $repo = '';  // repository name
-  private $deploy = './'; // directory deploy repository
+  private $user = 'Art.Sled'; // Github username
+  private $repo = 'oprncart.loc';  // repository name
+  private $deploy = '/home/a/artsleduag/test/public_html/'; // directory deploy repository
   private $branch = 'master';
   private $download_name = 'download.zip'; // name of downloaded zip file
   private $debug = false;  // false = hide output
   private $process = 'deploy'; // deploy or update
-  private $access_token = ''; // deploy or update
+  private $access_token = 'update'; // deploy or update
  
   // files to ignore in directory
   private $ignore_files = array('README.md', '.gitignore', '.', '..');
