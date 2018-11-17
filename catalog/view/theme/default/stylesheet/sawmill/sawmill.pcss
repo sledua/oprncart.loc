@@ -1,5 +1,18 @@
 .sawmill {
   position: relative;
+  @import 'bootstrap-grid.css';
+  .mb-1{
+      margin-bottom: 10px;
+  }
+  .mt-1{
+      margin-top: 10px;
+  }
+  .ml-1{
+      margin-left: 10px;
+  }
+  .mr-1{
+      margin-right: 10px;
+  }
   .sawmill-popup-backdrop {
     position: fixed;
     left: 0;
@@ -73,5 +86,15 @@
         }
       }
     }
+  }
+  .cutting-setting{
+      > .edge_trimming{
+          .cutting-square{
+              width: 100%;
+              height: 200px;
+              display: block;
+              border: 1px solid #000000;
+          }
+      }
   }
 }

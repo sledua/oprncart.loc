@@ -1,9 +1,14 @@
 sawmill.state.detail = {
-    entities: []
+    entities: {}
 };
 sawmill.mutations.ADD_DETAIL = (state, payload) => {
-    let details = JSON.parse(JSON.stringify(state.detail.entities));
-    details.push(payload);
-    console.log(details);
-    Vue.set(state.detail, 'entities', details)
+    var detailID = Math.random().toString(36).substr(2, 9);
+    const detail = {
+        ...payload,
+        id: detailID
+    };
+    Vue.set(state.detail.entities, detailID, detail)
+};
+sawmill.mutations.UPDATE_DETAIL = (state, payload) => {
+    Vue.set(state.detail.entities, payload.detailID, payload.detail)
 };

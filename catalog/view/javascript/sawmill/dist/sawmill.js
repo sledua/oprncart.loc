@@ -30,8 +30,13 @@ sawmill.actions.ADD_DETAIL = function (_ref3, payload) {
   return commit('ADD_DETAIL', payload);
 };
 
-sawmill.actions.SET_STEP = function (_ref4, payload) {
+sawmill.actions.UPDATE_DETAIL = function (_ref4, payload) {
   var commit = _ref4.commit;
+  return commit('UPDATE_DETAIL', payload);
+};
+
+sawmill.actions.SET_STEP = function (_ref5, payload) {
+  var commit = _ref5.commit;
   return commit('SET_STEP', payload);
 };
 
@@ -106,15 +111,19 @@ sawmill.getters.products = function (state, getters) {
   _.each(state.products, function (product) {
     var tempProduct = _objectSpread({}, product, {
       active: false,
-      selected: false
+      detailsSquare: 0,
+      detailsQuantity: 0
     });
 
-    if (!_.isUndefined(getters.edgeProduct[product.product_id])) {
+    if (getters.activeProduct === product.product_id) {
       tempProduct.active = true;
     }
 
-    if (getters.activeProduct === product.product_id) {
-      tempProduct.selected = true;
+    for (var detailID in getters.allDetails) {
+      if (getters.allDetails[detailID].material_id === product.product_id) {
+        tempProduct.detailsQuantity += getters.allDetails[detailID].quantity;
+        tempProduct.detailsSquare += getters.allDetails[detailID].width * getters.allDetails[detailID].height;
+      }
     }
 
     result.push(tempProduct);
@@ -124,21 +133,27 @@ sawmill.getters.products = function (state, getters) {
 };
 
 sawmill.getters.details = function (state, getters) {
-  var result = [];
+  var result = {};
 
   _.each(state.detail.entities, function (product) {
-    var productInfo = _.find(getters.products, {
-      product_id: product.material_id
-    });
+    if (getters.activeProduct === product.material_id) {
+      var productInfo = _.find(getters.products, {
+        product_id: product.material_id
+      });
 
-    var tempProduct = _objectSpread({}, product, {
-      product: productInfo
-    });
+      var tempProduct = _objectSpread({}, product, {
+        product: productInfo
+      });
 
-    result.push(tempProduct);
+      result[product.id] = tempProduct;
+    }
   });
 
   return result;
+};
+
+sawmill.getters.allDetails = function (state) {
+  return state.detail.entities;
 };
 
 sawmill.getters.step = function (state) {
@@ -159,122 +174,189 @@ sawmill.mutations.SET_EDGE_PRODUCT = function (state, payload) {
 };
 
 sawmill.state.detail = {
-  entities: []
+  entities: {}
 };
 
 sawmill.mutations.ADD_DETAIL = function (state, payload) {
-  var details = JSON.parse(JSON.stringify(state.detail.entities));
-  details.push(payload);
-  console.log(details);
-  Vue.set(state.detail, 'entities', details);
+  var detailID = Math.random().toString(36).substr(2, 9);
+
+  var detail = _objectSpread({}, payload, {
+    id: detailID
+  });
+
+  Vue.set(state.detail.entities, detailID, detail);
+};
+
+sawmill.mutations.UPDATE_DETAIL = function (state, payload) {
+  Vue.set(state.detail.entities, payload.detailID, payload.detail);
 };
 
 sawmill.state.step = {
-  active: 'edge'
+  active: 'specification'
 };
 
 sawmill.mutations.SET_STEP = function (state, payload) {
   Vue.set(state.step, 'active', payload.step);
 };
 
-Vue.component('page-additional', {
-  template: '#template-tag-page-additional',
+Vue.component('page-cutting', {
+  template: '#template-tag-page-cutting',
   data: function data() {
-    return {};
+    return {
+      edge_top: '',
+      edge_bottom: '',
+      edge_left: '',
+      edge_right: '',
+      kerf_thickness: '',
+      kerf_options: [{
+        text: this.$t('common.text_none'),
+        value: ''
+      }, {
+        text: 1 + ' ' + this.$t('common.text_unit_square_mm'),
+        value: 1
+      }, {
+        text: 2 + ' ' + this.$t('common.text_unit_square_mm'),
+        value: 2
+      }, {
+        text: 3 + ' ' + this.$t('common.text_unit_square_mm'),
+        value: 3
+      }, {
+        text: 4 + ' ' + this.$t('common.text_unit_square_mm'),
+        value: 4
+      }, {
+        text: 5 + ' ' + this.$t('common.text_unit_square_mm'),
+        value: 5
+      }]
+    };
   },
-  computed: {},
+  computed: _objectSpread({
+    square: function square() {
+      var square = 0;
+
+      for (var detailID in this.details) {
+        square += this.details[detailID].width * this.details[detailID].height;
+      }
+
+      return square;
+    },
+    quantity: function quantity() {
+      var quantity = 0;
+
+      for (var detailID in this.details) {
+        quantity += this.details[detailID].quantity;
+      }
+
+      return quantity;
+    }
+  }, Vuex.mapGetters(['details', 'activeProduct'])),
   methods: {
     handleNextStep: function handleNextStep() {
       this.$store.dispatch('SET_STEP', {
-        step: 'calculate'
+        step: 'services'
       });
     }
   }
 });
-Vue.component('page-calculate', {
-  template: '#template-tag-page-calculate',
+Vue.component('page-services', {
+  template: '#template-tag-page-services',
   data: function data() {
     return {};
   },
   computed: {},
-  methods: {
-    handleNextStep: function handleNextStep() {
-      this.$store.dispatch('SET_STEP', {
-        step: 'order'
-      });
-    }
-  }
+  methods: {}
 });
-Vue.component('page-detail', {
-  template: '#template-tag-page-detail',
+Vue.component('page-specification', {
+  template: '#template-tag-page-specification',
   data: function data() {
     return {
       detail: {
-        name: '',
         material_id: '',
         width: '',
         height: '',
-        quantity: '',
-        multiplicity_stitching: '',
-        take_into_account_texture: 0
-      },
-      textureOptions: {
-        0: this.$t('common.text_yes'),
-        1: this.$t('common.text_no')
+        quantity: ''
       }
     };
   },
-  computed: _objectSpread({}, Vuex.mapGetters(['products', 'details'])),
-  methods: {
-    handleNextStep: function handleNextStep() {
-      this.$store.dispatch('SET_STEP', {
-        step: 'additional'
-      });
+  computed: _objectSpread({
+    square: function square() {
+      var square = 0;
+
+      for (var detailID in this.details) {
+        square += this.details[detailID].width * this.details[detailID].height;
+      }
+
+      return square;
     },
-    onSubmit: function onSubmit() {
-      this.$store.dispatch('ADD_DETAIL', _objectSpread({}, this.detail));
-      this.detail = {
-        name: '',
-        material_id: '',
-        width: '',
-        height: '',
-        quantity: '',
-        multiplicity_stitching: '',
-        take_into_account_texture: 0
-      };
+    quantity: function quantity() {
+      var quantity = 0;
+
+      for (var detailID in this.details) {
+        quantity += this.details[detailID].quantity;
+      }
+
+      return quantity;
     }
-  }
-});
-Vue.component('page-edge', {
-  template: '#template-tag-page-edge',
-  data: function data() {
-    return {};
-  },
-  computed: _objectSpread({}, Vuex.mapGetters(['products', 'edgeProducts', 'activeProduct', 'isEdgeSelected'])),
+  }, Vuex.mapGetters(['products', 'details', 'activeProduct'])),
   methods: {
     handleSelectProduct: function handleSelectProduct(product_id) {
       this.$store.dispatch('SET_ACTIVE_PRODUCT', {
         productId: product_id
       });
     },
-    handleSelectEdge: function handleSelectEdge(product_id) {
-      this.$store.dispatch('SET_EDGE_PRODUCT', {
-        productId: this.activeProduct,
-        edgeId: product_id
-      });
-    },
     handleNextStep: function handleNextStep() {
       this.$store.dispatch('SET_STEP', {
-        step: 'detail'
+        step: 'cutting'
       });
+    },
+    handleEditWidth: function handleEditWidth(e, detailID) {
+      var detail = this.details[detailID];
+      this.$store.dispatch('UPDATE_DETAIL', {
+        detailID: detailID,
+        detail: _objectSpread({}, detail, {
+          width: Number(e.target.value)
+        })
+      });
+    },
+    handleEditHeight: function handleEditHeight(e, detailID) {
+      var detail = this.details[detailID];
+      this.$store.dispatch('UPDATE_DETAIL', {
+        detailID: detailID,
+        detail: _objectSpread({}, detail, {
+          height: Number(e.target.value)
+        })
+      });
+    },
+    handleEditQuantity: function handleEditQuantity(e, detailID) {
+      var detail = this.details[detailID];
+      this.$store.dispatch('UPDATE_DETAIL', {
+        detailID: detailID,
+        detail: _objectSpread({}, detail, {
+          quantity: Number(e.target.value)
+        })
+      });
+    },
+    addDetail: function addDetail() {
+      if (this.activeProduct) {
+        this.$store.dispatch('ADD_DETAIL', _objectSpread({}, {
+          material_id: '',
+          width: '',
+          height: '',
+          quantity: ''
+        }, {
+          material_id: this.activeProduct
+        }));
+      }
+    },
+    onSubmit: function onSubmit() {
+      this.$store.dispatch('ADD_DETAIL', _objectSpread({}, this.detail, {
+        material_id: this.activeProduct
+      }));
+      this.detail = {
+        material_id: '',
+        width: '',
+        height: '',
+        quantity: ''
+      };
     }
   }
-});
-Vue.component('page-order', {
-  template: '#template-tag-page-order',
-  data: function data() {
-    return {};
-  },
-  computed: {},
-  methods: {}
 });
