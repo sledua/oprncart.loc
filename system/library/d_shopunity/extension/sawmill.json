@@ -59,7 +59,6 @@
         "admin/controller/extension/module/sawmill.php",
         "admin/model/extension/module/sawmill.php",
         "admin/language/en-gb/extension/module/sawmill.php",
-        "admin/view/template/extension/module/sawmill.twig",
         
         "catalog/controller/extension/module/sawmill.php",
         "catalog/model/extension/module/sawmill.php",
@@ -70,10 +69,10 @@
     ],
     "dirs": [
         "admin/controller/extension/sawmill",
-        "admin/langauge/en-gb/extension/sawmill",
+        "admin/language/en-gb/extension/sawmill",
         "admin/view/image/sawmill",
         "admin/view/template/extension/sawmill",
-        "catalog/view/javascript/sawmill",
+        "catalog/view/javascript/sawmill/dist",
         "catalog/view/theme/default/stylesheet/sawmill",
         "catalog/view/theme/default/template/extension/sawmill"
     ],
