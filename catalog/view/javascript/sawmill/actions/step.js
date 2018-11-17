@@ -1,0 +1,1 @@
+sawmill.actions.SET_STEP = ({commit}, payload) => (commit('SET_STEP', payload));

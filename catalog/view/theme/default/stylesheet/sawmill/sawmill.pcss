@@ -1,0 +1,100 @@
+.sawmill {
+  position: relative;
+  @import 'bootstrap-grid.css';
+  .mb-1{
+      margin-bottom: 10px;
+  }
+  .mt-1{
+      margin-top: 10px;
+  }
+  .ml-1{
+      margin-left: 10px;
+  }
+  .mr-1{
+      margin-right: 10px;
+  }
+  .sawmill-popup-backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 98;
+    background-color: #000;
+    opacity: 0.5;
+  }
+  .nav-tabs {
+    margin-bottom: 10px;
+  }
+  .sawmill-popup {
+    position: fixed;
+    left: 20%;
+    top: 10%;
+    width: 60%;
+    height: 80%;
+    background: #fff;
+    border-radius: 6px;
+    z-index: 99;
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    overflow-y: scroll;
+
+    .step-edge {
+      .sawmill-material-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 0 0 20px;
+      }
+      .sawmill-material-wrapper {
+        > .sawmill-material-thumb {
+          border: 2px solid red;
+          padding: 10px 20px;
+          margin-bottom: 10px;
+          cursor: pointer;
+          &.active {
+            border-color: #000;
+            > .product-name {
+              color: #000;
+            }
+          }
+          &.selected {
+            border-color: green;
+          }
+          > .product-name {
+            font-size: 12px;
+            font-weight: normal;
+            color: red;
+
+          }
+
+        }
+      }
+
+      .sawmill-edge-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 0 0 20px;
+      }
+      .sawmill-edge-subTitle {
+        font-size: 15px;
+        font-weight: bold;
+        padding: 0 0 10px;
+      }
+      .sawmill-table-edge {
+        tr:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .cutting-setting{
+      > .edge_trimming{
+          .cutting-square{
+              width: 100%;
+              height: 200px;
+              display: block;
+              border: 1px solid #000000;
+          }
+      }
+  }
+}
