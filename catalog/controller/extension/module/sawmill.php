@@ -161,6 +161,14 @@ class ControllerExtensionModuleSawmill extends Controller {
         $local['common']['text_step_specification'] = $this->language->get('text_step_specification');
         $local['common']['text_step_cutting'] = $this->language->get('text_step_cutting');
         $local['common']['text_step_services'] = $this->language->get('text_step_services');
+        $local['common']['text_details'] = $this->language->get('text_details');
+        $local['common']['text_cutting_setting'] = $this->language->get('text_cutting_setting');
+        $local['common']['text_edge_trimming'] = $this->language->get('text_edge_trimming');
+        $local['common']['text_kerf_thickness'] = $this->language->get('text_kerf_thickness');
+        $local['common']['text_none'] = $this->language->get('text_none');
+
+        $local['common']['button_save'] = $this->language->get('button_save');
+        $local['common']['button_cancel'] = $this->language->get('button_cancel');
 
         $local['common']['text_unit_quantity'] = $this->language->get('text_unit_quantity');
         $local['common']['text_unit_square'] = $this->language->get('text_unit_square');

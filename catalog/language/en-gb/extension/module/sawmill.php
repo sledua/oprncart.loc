@@ -4,8 +4,9 @@ $_['text_material_title']       = 'Cutting material';
  $_['text_product_framing']     = 'Product framing';
  $_['text_edge_recommended']    = 'Recommended edge';
 
- $_['text_unit_square']    = '';
- $_['text_unit_quantity']    = 'Recommended edge';
+ $_['text_unit_square']         = '';
+ $_['text_unit_quantity']       = 'Recommended edge';
+ $_['text_details']             = 'All details';
 
  $_['button_cutting_begin']     = 'Begin cutting';
  $_['button_next']              = 'Next';
@@ -27,9 +28,16 @@ $_['text_material_title']       = 'Cutting material';
  $_['text_unit_square']         = 'sq.m.';
  $_['text_unit_square_mm']      = 'sq.mm.';
 
- $_['text_step_specification']   = 'Specification';
- $_['text_step_cutting']         = 'Cutting';
- $_['text_step_services']        = 'Services';
+ $_['text_cutting_setting']     = 'Cutting setting';
+ $_['text_edge_trimming']       = 'Edge trimming';
+ $_['text_kerf_thickness']      = 'Kerf thickness';
+ $_['text_none']                = '--None--';
+ $_['button_save']              = 'Save';
+ $_['button_cancel']            = 'Cancel';
+
+ $_['text_step_specification']  = 'Specification';
+ $_['text_step_cutting']        = 'Cutting';
+ $_['text_step_services']       = 'Services';
 
  $_['text_information']         = 'Information:';
  $_['text_sum_detail_square']   = 'Total area of details';

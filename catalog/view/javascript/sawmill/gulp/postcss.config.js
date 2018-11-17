@@ -3,6 +3,7 @@ module.exports = function () {
 		syntax:'postcss-scss',
 		plugins: [
 			require('precss')({}),
+			require('postcss-import')({}),
 			require('autoprefixer')({ browsers : ['last 15 versions'] }),
 			require('postcss-pxtorem')({
 				rootValue: 10,
